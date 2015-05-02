@@ -136,7 +136,7 @@ func (c *Compiler) CompileFolder(srcPath, outPath string) error {
 			return err
 		}
 		if n == 0 {
-			return errors.New("nothing written to " + p)
+			return errors.New("nothing written to " + outPath)
 		}
 
 		return nil
