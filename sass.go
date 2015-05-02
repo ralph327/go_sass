@@ -132,11 +132,13 @@ func (c *Compiler) CompileFolder(srcPath, outPath string) error {
 		defer wp.Close()
 
 		n, err := wp.Write([]byte(C.GoString(ctx.output_string)))
+		
 		if err != nil {
 			return err
 		}
 		if n == 0 {
-			return errors.New("nothing written to " + outPath)
+			sassErr := C.GoString(ctx.error_message)
+			return errors.New("nothing written to " + outPath + " compile returned error: " + sassErr)
 		}
 
 		return nil
